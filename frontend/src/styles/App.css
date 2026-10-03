@@ -1,0 +1,341 @@
+/* ============================================================
+   DESIGN TOKENS — the ledger system
+   Every other stylesheet in this app reads from these variables.
+   Do not hardcode colors/spacing elsewhere; add a token here instead.
+   ============================================================ */
+:root {
+  /* Palette */
+  --paper: #f6f4ef;
+  --paper-raised: #fbfaf7;
+  --ink: #0f1d2e;
+  --ink-soft: #3c4a5c;
+  --ink-faint: #7c8a9a;
+  --brass: #b6863c;
+  --brass-deep: #92682c;
+  --vault-green: #28513f;
+  --vault-green-bg: #e7ede9;
+  --ledger-red: #8c3b2e;
+  --ledger-red-bg: #f3e6e3;
+  --rule: #d8d2c4;
+  --rule-strong: #bdb5a2;
+
+  /* Type */
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-ui: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Scale (major third-ish, tuned by hand) */
+  --step-00: 0.8125rem;
+  --step-01: 0.9375rem;
+  --step-02: 1.0625rem;
+  --step-03: 1.375rem;
+  --step-04: 1.875rem;
+  --step-05: 2.625rem;
+  --step-06: 3.75rem;
+
+  /* Layout */
+  --sidebar-w: 244px;
+  --radius: 3px;
+  --shadow-panel: 0 1px 0 var(--rule), 0 12px 24px -18px rgba(15, 29, 46, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--step-01);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-ui);
+}
+
+/* Tabular figures wherever money/numbers are displayed */
+.figure,
+.figure * {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Focus visibility — never remove outlines outright */
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 40px 48px 64px;
+  max-width: 1180px;
+}
+
+.page-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-head h1 {
+  font-size: var(--step-05);
+  letter-spacing: -0.01em;
+}
+
+.page-head .page-folio {
+  font-family: var(--font-display);
+  color: var(--ink-faint);
+  font-size: var(--step-02);
+}
+
+.page-sub {
+  color: var(--ink-soft);
+  font-size: var(--step-02);
+  margin-top: 6px;
+}
+
+/* ============================================================
+   LEDGER PANEL — the base surface for content blocks
+   ============================================================ */
+.ledger-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-panel);
+}
+
+.ledger-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger-panel__head h2 {
+  font-size: var(--step-03);
+}
+
+.ledger-panel__body {
+  padding: 8px 24px 20px;
+}
+
+/* ============================================================
+   LEDGER TABLE — hairline rows, not cards
+   ============================================================ */
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ledger-table thead th {
+  text-align: left;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--step-00);
+  color: var(--ink-faint);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.ledger-table th.is-numeric,
+.ledger-table td.is-numeric {
+  text-align: right;
+}
+
+.ledger-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--step-01);
+}
+
+.ledger-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ledger-table tbody tr {
+  transition: background 120ms ease;
+}
+
+.ledger-table tbody tr:hover {
+  background: rgba(182, 134, 60, 0.06);
+  cursor: pointer;
+}
+
+.folio {
+  font-family: var(--font-display);
+  color: var(--ink-faint);
+  font-size: var(--step-00);
+}
+
+/* ============================================================
+   AMOUNTS
+   ============================================================ */
+.amount {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.amount--credit {
+  color: var(--vault-green);
+}
+
+.amount--debit {
+  color: var(--ledger-red);
+}
+
+/* ============================================================
+   STATUS TAGS — text + rule, not filled pills
+   ============================================================ */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--step-00);
+  font-weight: 600;
+  padding: 3px 0;
+}
+
+.status-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-tag--active,
+.status-tag--success,
+.status-tag--closed-good {
+  color: var(--vault-green);
+}
+
+.status-tag--pending {
+  color: var(--brass-deep);
+}
+
+.status-tag--failed,
+.status-tag--overdue,
+.status-tag--inactive {
+  color: var(--ledger-red);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--step-01);
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--primary:hover {
+  background: var(--brass-deep);
+}
+
+.btn--brass {
+  background: var(--brass);
+  color: var(--ink);
+}
+
+.btn--brass:hover {
+  background: var(--brass-deep);
+  color: var(--paper);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--ink);
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: var(--ledger-red);
+  color: var(--ledger-red);
+}
+
+.btn--danger:hover {
+  background: var(--ledger-red);
+  color: var(--paper);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .app-main {
+    margin-left: 0;
+    padding: 24px 20px 48px;
+  }
+}

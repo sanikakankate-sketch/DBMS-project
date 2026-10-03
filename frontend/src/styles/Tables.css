@@ -1,0 +1,109 @@
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.table-toolbar__search {
+  flex: 1;
+  max-width: 320px;
+}
+
+.table-toolbar__search input {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: var(--step-01);
+  padding: 9px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.table-toolbar__search input:focus {
+  outline: none;
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(182, 134, 60, 0.18);
+}
+
+.table-toolbar__filters {
+  display: flex;
+  gap: 8px;
+}
+
+.table-toolbar__filters select {
+  font-family: var(--font-ui);
+  font-size: var(--step-00);
+  padding: 8px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.table-toolbar__spacer {
+  flex: 1;
+}
+
+.table-empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--step-01);
+}
+
+.inline-panel {
+  border-top: 1px solid var(--rule);
+  padding: 22px 24px 26px;
+  background: rgba(182, 134, 60, 0.04);
+}
+
+.inline-panel h3 {
+  font-size: var(--step-02);
+  margin-bottom: 16px;
+}
+
+/* ---- Report bars (ledger-style, no chart library) ---- */
+.report-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.report-bar {
+  display: grid;
+  grid-template-columns: 110px 1fr 48px;
+  align-items: center;
+  gap: 14px;
+}
+
+.report-bar__label {
+  font-size: var(--step-00);
+  color: var(--ink-soft);
+}
+
+.report-bar__track {
+  height: 8px;
+  background: var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.report-bar__fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.report-bar__fill.amount--credit {
+  background: var(--vault-green);
+}
+
+.report-bar__fill.amount--debit {
+  background: var(--ledger-red);
+}
+
+.report-bar__value {
+  text-align: right;
+  font-size: var(--step-01);
+}
