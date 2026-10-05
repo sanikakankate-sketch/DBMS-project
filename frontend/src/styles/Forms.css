@@ -1,0 +1,141 @@
+/* ---- Loading / Error states ---- */
+.loading-state,
+.error-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 24px;
+  color: var(--ink-soft);
+  font-size: var(--step-01);
+}
+
+.loading-state__mark {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--rule-strong);
+  border-top-color: var(--brass);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state {
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--ledger-red-bg);
+  background: var(--ledger-red-bg);
+  border-radius: var(--radius);
+}
+
+.error-state__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ledger-red);
+  font-size: var(--step-03);
+}
+
+.error-state__body {
+  margin-top: 4px;
+}
+
+/* ---- Dialog ---- */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 29, 46, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  width: 380px;
+  max-width: calc(100vw - 40px);
+  box-shadow: 0 24px 48px -12px rgba(15, 29, 46, 0.4);
+}
+
+.dialog-panel h3 {
+  font-size: var(--step-04);
+  margin-bottom: 8px;
+}
+
+.dialog-panel p {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---- Forms ---- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 24px;
+}
+
+.form-grid--single {
+  grid-template-columns: 1fr;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field--span-2 {
+  grid-column: span 2;
+}
+
+.field label {
+  font-size: var(--step-00);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-ui);
+  font-size: var(--step-01);
+  padding: 10px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--brass);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(182, 134, 60, 0.18);
+}
+
+.field-hint {
+  font-size: var(--step-00);
+  color: var(--ink-faint);
+}
+
+.field-error {
+  font-size: var(--step-00);
+  color: var(--ledger-red);
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .field--span-2 {
+    grid-column: span 1;
+  }
+}

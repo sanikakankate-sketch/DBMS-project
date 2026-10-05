@@ -1,0 +1,72 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page__panel {
+  background: var(--paper-raised);
+  border-radius: var(--radius);
+  padding: 44px 40px 36px;
+  width: 380px;
+  max-width: calc(100vw - 40px);
+  box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  z-index: 1;
+}
+
+.login-page__mark {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 18px;
+  border: 1px solid var(--brass);
+  color: var(--brass);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-page__panel h1 {
+  font-size: var(--step-06);
+}
+
+.login-page__tagline {
+  color: var(--ink-faint);
+  font-size: var(--step-00);
+  margin-top: 6px;
+  margin-bottom: 30px;
+}
+
+.login-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.login-page__form .btn {
+  margin-top: 6px;
+}
+
+.login-page__ledger-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 14px 0;
+  border-top: 1px solid rgba(246, 244, 239, 0.1);
+  color: rgba(246, 244, 239, 0.28);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
